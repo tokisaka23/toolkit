@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Notes]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib\media\favicon.png</url><title>Notes</title><link></link></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Thu, 22 May 2025 03:49:41 GMT</lastBuildDate><atom:link href="lib\rss.xml" rel="self" type="application/rss+xml"/><pubDate>Thu, 22 May 2025 03:49:40 GMT</pubDate><ttl>60</ttl><dc:creator></dc:creator><item><title><![CDATA[配置]]></title><description><![CDATA[ 
+ <br>检查版本：<br>git --version
+<br><br><br>
+<br>system: 包含系统内所有用户和所有仓库的配置信息<br>
+存放在 C:\Program Files\Git\etc\gitconfig
+<br>global: 包含当前用户的所有git仓库配置<br>
+存放在 C:\Users[用户名]\.gitconfig
+<br>local: 仅适用于某个git仓库<br>
+存放在 项目根目录/.git/config<br>
+优先级：system &lt; global &lt; local
+<br><br>
+<br>查看当前git配置的所有信息
+git config --list
+
+git config -l
+
+
+<br>查看系统全局配置
+git config --system --list
+
+
+<br>查看当前用户全局配置
+git config --global --list
+
+
+<br>查看当前仓库配置信息
+git config --local --list
+
+
+<br><br>git config --global user.name "your_name"
+git config --global user.email "your_email@example.com"
+<br>如想为特定项目设置不同参数，将 global 改为 local 即可<br><br><br>三种方式：<br>
+<br>在项目文件夹中 shift + 右键，打开git bash
+<br>使用命令行，pushd 命令直接导航到相应文件夹下
+<br>使用命令行，先 E:\ 命令进入E盘，再 cd 到相应文件夹下<br>
+输入
+<br>git init
+<br>git会初始化该目录，在其中创建一个隐藏的 .git 文件夹，用于存储所有版本控制信息<br><br>
+<br>查看当前状态：（显示哪些文件未追踪，哪些文件已经修改但未提交）
+git status
+
+
+<br>添加文件到暂存区：<br>
+添加所有文件：
+git add .
+
+添加特定文件：
+git add filename
+
+
+<br><br><br>git commit
+<br>git 会为每个提交创建一个独立的版本历史记录，包含<br>
+<br>id<br>
+根据摘要算法计算出不重复的40位字符，本地命令中可以只用前六位<br>
+可通过 id 找到曾经的任何内容和变动
+<br>描述<br>
+针对本次提交的描述说明，应准确填写，和代码中的注释同等重要
+<br>快照内容<br>
+完整的版本文件，以对象树的结构存在仓库下 .git\objects 目录中
+<br>commit参数<br>
+<br>提交，描述本次修改内容：
+git commit -m "description"
+
+
+<br>从工作区直接提交到版本库，略过 git add 步骤，不包括新增的文件
+git commit -a
+
+
+<br>提交暂存区的指定文件到仓库区
+git commit filename
+
+
+<br>提交指定文件，附带描述
+git commit filename -m "description"
+
+
+<br>使用一次新的 commit 代替上一次提交，此举会修改 commit 的hash 值 (id)
+git commit --amend -m "description"
+
+
+<br><br>（id，作者，时间，提交信息描述）<br>git log
+<br>log参数<br>
+<br>查看最近n条日志 (20)
+git log -n20
+
+
+<br>使日志输出以一行输出，更简洁
+git log -n20 --oneline
+
+
+<br>可视化显示分支关系
+git log -n20 --graph
+
+
+<br>显示特定文件的版本历史<br>
+ 	git log --follow [file] 	<br>
+如显示 log 时分页：
+<br>q：退出，回到命令行
+<br>上下箭头或 j/k：上下移动
+<br>空格：向下翻页
+<br>b：向上翻页
+<br>/ + 搜索词：搜索日志内容
+<br><br><img alt="git_Fig. 1..png" src="tools\git\figs\git_fig.-1..png"><br><br>
+<br>显示工作目录和暂存区之间的差异 ：<br>
+找到哪些文件已经修改，但未提交<br>
+删除的行用 - 标记，新增的行用 + 标记
+git diff
+
+
+<br>查看当前 git 仓库的状态
+git status
+
+
+<br><br><br>与 github 上的注册信息一一对应<br>git config --global user.name "your_name"
+git config --global user.email "your_email@example.com"
+<br><br>在 github 上创建仓库，找到<br>
+两种协议：<br>
+<br>HTTPS （安全性较低）<br>
+每次操作时，均需要提供 github 用户名和密码进行身份验证
+<br>SSH （安全性较高）<br>
+使用 SSH 密钥对 认证用户身份<br>
+私钥存储在本地，公钥存储在远程仓库中
+<br><br>
+<br>生成基于 ed25519 算法的密钥对：
+<br>ssh-keygen -t ed25519 -C "your_email@example.com"
+<br>成功创建后，会保存在 C:\Users\用户名\.ssh 目录下<br>
+id_ed25519 表示私钥，id_ed25519.pub 表示公钥<br>
+<br>将创建的公钥添加到远程仓库<br>
+复制 id_ed25519.pub 中的内容，在 github 设置 - SSH and GPG keys 中添加 SSH keys<br>
+使用以下命令测试是否连接成功 （输入yes）
+<br>ssh -T git@github.com
+<br>得到 Hi "your_name"! You've successfully authenticated, but GitHub does not provide shell access.<br><br><br>将远程仓库的完整副本（包括代码和历史记录）复制到本地<br>
+本地新建文件夹，导航至该文件夹<br>
+从 github 远程仓库上复制 HTTPS 或 SSH 链接，进行克隆<br>git clone "link"
+<br><br>添加 origin 远程仓库<br>git remote add origin "link"
+<br>删除 origin 远程仓库<br>git remote remove origin
+<br>查看是否关联成功：<br>git remote -v
+<br><br>本地仓库修改完成 (commit) 后，将更改同步到远程仓库<br>
+远程仓库名：默认为 origin<br>
+本地分支名：要推送的本地分支名称<br>
+远程分支名：希望将更改推送到的远程分支名<br>git push &lt;远程仓库名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;
+<br>-u 代表 --set-upstream，-u 告诉 Git 在推送代码到远程仓库的同时，将本地分支与远程分支关联起来，设置远程分支为本地分支的“上游分支”<br>
+关联后，后续只需运行 git push 或 git pull，Git 会自动知道要推送或拉取的远程分支，无需每次指定远程仓库和分支名<br>git push -u origin "master"
+<br>在 github 新建 branch 分支，推送到 branch 分支<br>git push origin "master":"branch"
+<br>省略参数时，会默认将当前分支推送到对应的远程仓库分支<br>git push
+<br><br>远程仓库名默认为 origin，远程分支名默认为 master 或 main<br>git pull &lt;远程仓库名&gt; &lt;远程分支名&gt;
+<br>省略远程仓库名和远程分支名，则默认从当前分支所关联的远程仓库和分支中拉取更新<br>git pull
+<br><br>
+<br>master：在创建仓库时就存在，作为主分支，存放稳定的代码，不能随便修改或合并
+<br>开发分支：用于开发使用，不影响主分支的稳定
+<br>临时开发分支：开发分支的分支，完成后合并到开发分支，并删除自身
+<br><br>创建本地 new_branch 分支，创建完后仍处于 master 下<br>git branch new_branch
+<br>查看当前仓库所有分支，绿色代表当前位置<br>git branch
+<br>切换本地分支至 new_branch 分支 (两种写法)<br>git checkout new_branch
+<br>git switch new_branch
+<br><br>切换到 master 分支<br>git merge new_branch
+<br>如果发生冲突：<br>
+<br>查看冲突文件
+git status
+
+
+<br>打开冲突文件<br>
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>
+主分支的内容 (master)<br>
+=======<br>
+要合并进来的分支的内容<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; new_branch
+<br>手动选择合适的内容保留，删除冲突标记 （&lt;, =, &gt; 共三行）
+<br>添加到暂存区，提交
+<br><br>使用 -d 删除分支时，必须确保该分支已合并回主分支，否则 git 会阻止删除<br>git branch -d new_branch
+<br>如想强制删除，使用 -D<br>git branch -D new_branch
+<br><br>Git Tag 就是仓库中某个重要提交的书签，用于标记重要版本，或关键节点 (v1.0, v2.0)<br><br>标签的创建默认指向当前最新的 commit<br>
+<br>轻量标签 （信息简洁）
+git tag &lt;标签名&gt;
+
+
+<br>附注标签 （带有额外说明信息）<br>
+ 	git tag -a &lt;标签名&gt; -m "description" 	<br>
+对过去的提交记录打标签，commit id 可使用 git log 查看（使用前六位）
+<br>git tag -a &lt;标签名&gt; &lt;commit id&gt; -m "description"
+<br><br>标签按照字母，数字顺序排列<br>git tag
+<br>查看带有详细信息的标签：<br>git show &lt;标签名&gt;
+<br><br>推送单个标签<br>git push origin &lt;标签名&gt;
+<br>推送所有标签<br>git push origin --tags
+<br>在 github 上可以点击 Tag, 查看所有标签信息<br><br>删除本地标签，但远程标签仍存在<br>git tag -d &lt;标签名&gt;
+<br>删除远程标签<br>git push origin --delete &lt;标签名&gt;
+<br><br><br>修改文件时，恢复该文件至最后一次 commit 后的状态，撤销所有未提交的修改<br>git checkout -- file_name
+<br><br>先将文件从暂存区移除<br>git reset file_name
+<br>再使用 checkout 撤销工作区的修改<br>git checkout --file_name
+<br><br><br>回退或撤销本地提交，将分支的提交历史往回移动<br>git reset
+<br>reset 有三种模式，默认为 mixed （HEAD表示当前所处的位置）<br><br>HEAD 往前移动一个提交位置（即上一次）：<br>git reset --soft HEAD~1
+<br>撤回到标签名所在的提交：<br>git reset &lt;标签名&gt;
+<br>撤回到某次提交：<br>git reset --hard &lt;commit id&gt;
+<br><br>另一种撤销方式，创建一次新的提交，撤销某个历史提交的所有更改<br>
+不会改变提交历史，团队协作更安全<br>git revert &lt;要撤销的id&gt;
+<br>情景：A -&gt; B -&gt; C<br>
+但是 B 有 bug ，使用 git revert id_of_B 撤销 B 后<br>
+新的队列： A -&gt; B -&gt; C -&gt; D<br>
+B 仍然保留， 新增 D（内容为撤销 B 的所有改动）<br><br><br>]]></description><link>tools\git\git-operation-guide.html</link><guid isPermaLink="false">tools/git/Git Operation Guide.md</guid><pubDate>Wed, 21 May 2025 08:35:19 GMT</pubDate><enclosure url="tools\git\figs\git_fig.-1..png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;tools\git\figs\git_fig.-1..png&quot;&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Linux 系统架构和组成]]></title><description><![CDATA[ 
+ <br><br>由内向外：<br>
+<br>内核<br>
+设备驱动程序，进程管理，内存管理，文件系统，网络协议栈
+<br>系统库<br>
+C 标准库 (libc)，数学库 (libm)，动态链接库 (libdl)，线程库 (libpthread)，第三方库 (...)
+<br>Shell<br>
+即命令行解释器，用户使用 Linux 系统的接口
+<br>应用程序
+]]></description><link>tools\linux\linux-operation-guide.html</link><guid isPermaLink="false">tools/Linux/Linux Operation Guide.md</guid><pubDate>Wed, 21 May 2025 18:11:02 GMT</pubDate></item><item><title><![CDATA[基础语法]]></title><description><![CDATA[ 
+ <br><a data-tooltip-position="top" aria-label="https://regexr.com" rel="noopener nofollow" class="external-link" href="https://regexr.com" target="_blank">在线练习网站</a> <br><br>正则表达式一般用两个 // 包裹，后跟一些修饰符<br>
+如 g 代表全局匹配，i 代表忽略大小写，m 代表多行匹配<br><br>
+<br>显示所有的 at
+/at/g
+
+
+<br>"." 表示换行符外的任意一个字符，at. 表示 at 后跟任意一个字符
+/at./g
+
+
+<br>使用方括号表示字符集合，只匹配指定的几种字符
+/at[ces0]/g
+
+
+<br>方括号内，使用 "-" 表示范围，a-z 表示所有小写字母
+/at[a-z]/g
+
+匹配 at 后跟着所有小写字母，或大写字母
+/at[a-zA-Z]/g
+
+数字也可以
+/at[a-zA-Z1-3]/g
+
+
+<br>方括号内，使用 ^ 取反，^a-z 表示除了小写字母外的任意字符<br>
+（ ^ 只有在方括号内部表示取反）
+/at[^a-z]/g
+
+除了字母外的任意字符
+/at[^a-zA-Z]/g
+
+
+<br><br>
+<br>\d 表示数字，作用同 [0-9]
+/at\d/g
+
+
+<br>\D 表示非数字，作用同 [^0-9]
+/at\D/g
+
+
+<br>\w 表示字母，数字，或下划线
+/at\w/g
+
+
+<br>W 表示除字母，数字，下划线外的字符 （空白字符或特殊字符）
+/at\W/g
+
+
+<br>\s 表示空白字符 （space 或 tab）
+/at\s/g
+
+
+<br>\S 表示非空白字符
+/at\S/g
+
+
+<br><br><br>
+<br>^ 在方括号外，表示匹配整段文本的开头<br>
+如启用多行模式 "//m"，也可以表示每一行的开头
+/^a/gm
+
+
+<br>$ 表示匹配每一行的结尾<br>
+由于 "." 表示除换行符外的任意一个字符，这里需要加 \ 转义<br>
+ 	/\.$/gm 	<br>
+找到一行中只有 at 的部分<br>
+ 	/^at$/gm 	<br>
+运用：在 VSCode中，可使用 ^ 和 $ 搭配替换模式，在所有行头 / 尾添加相同字符
+<br><br>\b 表示单词的边界<br>
+<br>匹配以 in 开头的单词
+/\bin/g
+
+
+<br>匹配以 in 结尾的单词
+/in\b/g
+
+
+<br>匹配单词 "in"<br>
+ 	/\bin\b/g 	<br>
+\B 表示非单词边界
+<br>
+<br>匹配单词中的 "in"
+/\Bin\B/g
+
+
+<br><br>
+<br>
+
+<br>表示前面的字符重复一次或多次，at+ 表示匹配 a 之后跟任意数量的 t
+
+/at+/g
+
+
+<br>
+
+<br>表示前面的字符重复零次或多次
+
+/at*/g
+
+
+<br>? 表示前面的字符重复零次或一次
+/at?/g
+
+
+<br>使用 {} 表示指定的重复次数，下表示 attt
+/at{3}/g
+
+使用 , 表示范围
+/at{3, 5}/g
+
+省略后者，表示至少重复3次
+/at{3,}/g
+
+{} 后加 ? 开启非贪婪匹配模式，只要匹配到 3 个 t 就会停止
+/at{3,}?/g
+
+
+<br><br><br>可以将多个字符作为一个整体来处理<br>
+<br>加上 () 作为整体，(at)* 表示 at 重复了多次
+/(at)*/g
+
+重复了三次
+/(at){3}/g
+
+
+<br>[] 表示内部任意一个都可以，既匹配 Pattern 也匹配 pattern
+/[Pp]attern/g
+
+
+<br>使用 | 表示或
+/Pattern|pattern/g
+
+
+<br>() 与 | 结合，效果类似 []
+/(P|p)attern/g
+
+
+<br><br>
+<br>对于 2025-05-22<br>
+可以使用 /\d{4}-\d{1,2}-\d{1,2}/g 匹配<br>
+捕获分组：/(\d{4})-(\d{1,2})-(\d{1,2})/g<br>
+切换为 Replace 模式，输入 $2-$3-$1，即可将日期改为 月-日-年 格式
+<br>匹配多种日期格式：<br>
+2025.05.22  2025-05-22  2025/05/22  2025_05_22  20250522
+/(\d{4})[-/_.]?(\d{1,2})[-/_.]?(\d{1,2})/g
+
+
+<br><br>使用 (?:)<br>\(\d{4})[-/_.]?(?:\d{1,2})[-/_.]?)(\d{1,2})/g
+<br>此时捕获两个分组<br><br>匹配首尾字母相同的单词<br>/\b([a-z])[a-z]*\1\b/g
+<br>([a-z])表示第一个字母并分组<br>
+[a-z]* 表示中间有零或多个其他字母<br>
+\1 表示引用第一个字母<br>
+\b 表示边界匹配<br><br>前瞻：匹配某些字符前面的内容<br>
+后顾：匹配某些字符后面的内容<br><br>使用 ?= 表示<br>
+现有 $100, $200, $abc, $def<br>
+如只想匹配 数字 前的 $ 符<br>/\$(?=\d+)/g
+<br><br>使用 ?! 表示<br>
+如只想匹配 非数字 前的 $ 符<br>/\$(?!\d+)/g
+<br><br>使用 ?&lt;= 表示<br>
+现有 $100, $200, $abc, $def, #100, #200<br>
+如只想匹配 美元符 后的数字<br>/(?&lt;=\$)\d+/g
+<br><br>使用 ?&lt;! 表示<br>
+如只想匹配 非 $ 后的数字<br>/(?&lt;!\$)\b\d+\b/g
+]]></description><link>tools\regex\regex-operation-guide.html</link><guid isPermaLink="false">tools/RegEx/RegEx Operation Guide.md</guid><pubDate>Thu, 22 May 2025 03:37:36 GMT</pubDate></item></channel></rss>
