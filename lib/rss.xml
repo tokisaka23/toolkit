@@ -1,4 +1,4 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Notes]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib\media\favicon.png</url><title>Notes</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Thu, 22 May 2025 17:45:55 GMT</lastBuildDate><atom:link href="lib\rss.xml" rel="self" type="application/rss+xml"/><pubDate>Thu, 22 May 2025 17:45:54 GMT</pubDate><ttl>60</ttl><dc:creator/><item><title><![CDATA[配置]]></title><description><![CDATA[ 
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Notes]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib\media\favicon.png</url><title>Notes</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Thu, 22 May 2025 17:52:46 GMT</lastBuildDate><atom:link href="lib\rss.xml" rel="self" type="application/rss+xml"/><pubDate>Thu, 22 May 2025 17:52:46 GMT</pubDate><ttl>60</ttl><dc:creator/><item><title><![CDATA[配置]]></title><description><![CDATA[ 
  <br>检查版本：<br>git --version
 <br><br><br>
 <br>system: 包含系统内所有用户和所有仓库的配置信息<br>
@@ -100,7 +100,7 @@ git log -n20 --graph
 <br>空格：向下翻页
 <br>b：向上翻页
 <br>/ + 搜索词：搜索日志内容
-<br><br><img alt="git_Fig. 1..png" src="tools\git\git_fig.-1..png"><br><br>
+<br><br><img alt="git_Fig. 1..png" src="tools\git\figs\git_fig.-1..png"><br><br>
 <br>显示工作目录和暂存区之间的差异 ：<br>
 找到哪些文件已经修改，但未提交<br>
 删除的行用 - 标记，新增的行用 + 标记
@@ -196,7 +196,7 @@ git tag &lt;标签名&gt;
 <br>情景：A -&gt; B -&gt; C<br>
 但是 B 有 bug ，使用 git revert id_of_B 撤销 B 后<br>
 新的队列： A -&gt; B -&gt; C -&gt; D<br>
-B 仍然保留， 新增 D（内容为撤销 B 的所有改动）<br><br><br>]]></description><link>tools\git\git-operation-guide.html</link><guid isPermaLink="false">tools/Git/Git Operation Guide.md</guid><pubDate>Thu, 22 May 2025 17:42:20 GMT</pubDate><enclosure url="tools\git\git_fig.-1..png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="tools\git\git_fig.-1..png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[安装虚拟机]]></title><description><![CDATA[ 
+B 仍然保留， 新增 D（内容为撤销 B 的所有改动）<br><br><br>]]></description><link>tools\git\git-operation-guide.html</link><guid isPermaLink="false">tools/Git/Git Operation Guide.md</guid><pubDate>Thu, 22 May 2025 17:52:34 GMT</pubDate><enclosure url="tools\git\figs\git_fig.-1..png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="tools\git\figs\git_fig.-1..png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[安装虚拟机]]></title><description><![CDATA[ 
  <br><br><a data-tooltip-position="top" aria-label="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Workstation%20Pro&amp;freeDownloads=true" rel="noopener nofollow" class="external-link" href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Workstation%20Pro&amp;freeDownloads=true" target="_blank">VMWare Workstation Pro</a>)<br>
 <a data-tooltip-position="top" aria-label="https://vault.centos.org/7.6.1810/isos/x86_64/CentOS-7-x86_64-DVD-1810.iso" rel="noopener nofollow" class="external-link" href="https://vault.centos.org/7.6.1810/isos/x86_64/CentOS-7-x86_64-DVD-1810.iso" target="_blank">CentOS操作系统</a><br>
 <a data-tooltip-position="top" aria-label="https://dl.hostbuf.com/finalshell3/finalshell_windows_x64.exe" rel="noopener nofollow" class="external-link" href="https://dl.hostbuf.com/finalshell3/finalshell_windows_x64.exe" target="_blank">FinalShell</a><br><br><br><br>Linux 的目录结构是一个树型结构，没有盘符的概念<br>
