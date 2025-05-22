@@ -1,4 +1,252 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Notes]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib\media\favicon.png</url><title>Notes</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Thu, 22 May 2025 08:09:48 GMT</lastBuildDate><atom:link href="lib\rss.xml" rel="self" type="application/rss+xml"/><pubDate>Thu, 22 May 2025 08:09:48 GMT</pubDate><ttl>60</ttl><dc:creator/><item><title><![CDATA[基础语法]]></title><description><![CDATA[ 
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Notes]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib\media\favicon.png</url><title>Notes</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Thu, 22 May 2025 17:45:55 GMT</lastBuildDate><atom:link href="lib\rss.xml" rel="self" type="application/rss+xml"/><pubDate>Thu, 22 May 2025 17:45:54 GMT</pubDate><ttl>60</ttl><dc:creator/><item><title><![CDATA[配置]]></title><description><![CDATA[ 
+ <br>检查版本：<br>git --version
+<br><br><br>
+<br>system: 包含系统内所有用户和所有仓库的配置信息<br>
+存放在 C:\Program Files\Git\etc\gitconfig
+<br>global: 包含当前用户的所有git仓库配置<br>
+存放在 C:\Users[用户名]\.gitconfig
+<br>local: 仅适用于某个git仓库<br>
+存放在 项目根目录/.git/config<br>
+优先级：system &lt; global &lt; local
+<br><br>
+<br>查看当前git配置的所有信息
+git config --list
+
+git config -l
+
+
+<br>查看系统全局配置
+git config --system --list
+
+
+<br>查看当前用户全局配置
+git config --global --list
+
+
+<br>查看当前仓库配置信息
+git config --local --list
+
+
+<br><br>git config --global user.name "your_name"
+git config --global user.email "your_email@example.com"
+<br>如想为特定项目设置不同参数，将 global 改为 local 即可<br><br><br>三种方式：<br>
+<br>在项目文件夹中 shift + 右键，打开git bash
+<br>使用命令行，pushd 命令直接导航到相应文件夹下
+<br>使用命令行，先 E:\ 命令进入E盘，再 cd 到相应文件夹下<br>
+输入
+<br>git init
+<br>git会初始化该目录，在其中创建一个隐藏的 .git 文件夹，用于存储所有版本控制信息<br><br>
+<br>查看当前状态：（显示哪些文件未追踪，哪些文件已经修改但未提交）
+git status
+
+
+<br>添加文件到暂存区：<br>
+添加所有文件：
+git add .
+
+添加特定文件：
+git add filename
+
+
+<br><br><br>git commit
+<br>git 会为每个提交创建一个独立的版本历史记录，包含<br>
+<br>id<br>
+根据摘要算法计算出不重复的40位字符，本地命令中可以只用前六位<br>
+可通过 id 找到曾经的任何内容和变动
+<br>描述<br>
+针对本次提交的描述说明，应准确填写，和代码中的注释同等重要
+<br>快照内容<br>
+完整的版本文件，以对象树的结构存在仓库下 .git\objects 目录中
+<br>commit参数<br>
+<br>提交，描述本次修改内容：
+git commit -m "description"
+
+
+<br>从工作区直接提交到版本库，略过 git add 步骤，不包括新增的文件
+git commit -a
+
+
+<br>提交暂存区的指定文件到仓库区
+git commit filename
+
+
+<br>提交指定文件，附带描述
+git commit filename -m "description"
+
+
+<br>使用一次新的 commit 代替上一次提交，此举会修改 commit 的hash 值 (id)
+git commit --amend -m "description"
+
+
+<br><br>（id，作者，时间，提交信息描述）<br>git log
+<br>log参数<br>
+<br>查看最近n条日志 (20)
+git log -n20
+
+
+<br>使日志输出以一行输出，更简洁
+git log -n20 --oneline
+
+
+<br>可视化显示分支关系
+git log -n20 --graph
+
+
+<br>显示特定文件的版本历史<br>
+ 	git log --follow [file] 	<br>
+如显示 log 时分页：
+<br>q：退出，回到命令行
+<br>上下箭头或 j/k：上下移动
+<br>空格：向下翻页
+<br>b：向上翻页
+<br>/ + 搜索词：搜索日志内容
+<br><br><img alt="git_Fig. 1..png" src="tools\git\git_fig.-1..png"><br><br>
+<br>显示工作目录和暂存区之间的差异 ：<br>
+找到哪些文件已经修改，但未提交<br>
+删除的行用 - 标记，新增的行用 + 标记
+git diff
+
+
+<br>查看当前 git 仓库的状态
+git status
+
+
+<br><br><br>与 github 上的注册信息一一对应<br>git config --global user.name "your_name"
+git config --global user.email "your_email@example.com"
+<br><br>在 github 上创建仓库，找到<br>
+两种协议：<br>
+<br>HTTPS （安全性较低）<br>
+每次操作时，均需要提供 github 用户名和密码进行身份验证
+<br>SSH （安全性较高）<br>
+使用 SSH 密钥对 认证用户身份<br>
+私钥存储在本地，公钥存储在远程仓库中
+<br><br>
+<br>生成基于 ed25519 算法的密钥对：
+<br>ssh-keygen -t ed25519 -C "your_email@example.com"
+<br>成功创建后，会保存在 C:\Users\用户名\.ssh 目录下<br>
+id_ed25519 表示私钥，id_ed25519.pub 表示公钥<br>
+<br>将创建的公钥添加到远程仓库<br>
+复制 id_ed25519.pub 中的内容，在 github 设置 - SSH and GPG keys 中添加 SSH keys<br>
+使用以下命令测试是否连接成功 （输入yes）
+<br>ssh -T git@github.com
+<br>得到 Hi "your_name"! You've successfully authenticated, but GitHub does not provide shell access.<br><br><br>将远程仓库的完整副本（包括代码和历史记录）复制到本地<br>
+本地新建文件夹，导航至该文件夹<br>
+从 github 远程仓库上复制 HTTPS 或 SSH 链接，进行克隆<br>git clone "link"
+<br><br>添加 origin 远程仓库<br>git remote add origin "link"
+<br>删除 origin 远程仓库<br>git remote remove origin
+<br>查看是否关联成功：<br>git remote -v
+<br><br>本地仓库修改完成 (commit) 后，将更改同步到远程仓库<br>
+远程仓库名：默认为 origin<br>
+本地分支名：要推送的本地分支名称<br>
+远程分支名：希望将更改推送到的远程分支名<br>git push &lt;远程仓库名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;
+<br>-u 代表 --set-upstream，-u 告诉 Git 在推送代码到远程仓库的同时，将本地分支与远程分支关联起来，设置远程分支为本地分支的“上游分支”<br>
+关联后，后续只需运行 git push 或 git pull，Git 会自动知道要推送或拉取的远程分支，无需每次指定远程仓库和分支名<br>git push -u origin "master"
+<br>在 github 新建 branch 分支，推送到 branch 分支<br>git push origin "master":"branch"
+<br>省略参数时，会默认将当前分支推送到对应的远程仓库分支<br>git push
+<br><br>远程仓库名默认为 origin，远程分支名默认为 master 或 main<br>git pull &lt;远程仓库名&gt; &lt;远程分支名&gt;
+<br>省略远程仓库名和远程分支名，则默认从当前分支所关联的远程仓库和分支中拉取更新<br>git pull
+<br><br>
+<br>master：在创建仓库时就存在，作为主分支，存放稳定的代码，不能随便修改或合并
+<br>开发分支：用于开发使用，不影响主分支的稳定
+<br>临时开发分支：开发分支的分支，完成后合并到开发分支，并删除自身
+<br><br>创建本地 new_branch 分支，创建完后仍处于 master 下<br>git branch new_branch
+<br>查看当前仓库所有分支，绿色代表当前位置<br>git branch
+<br>切换本地分支至 new_branch 分支 (两种写法)<br>git checkout new_branch
+<br>git switch new_branch
+<br><br>切换到 master 分支<br>git merge new_branch
+<br>如果发生冲突：<br>
+<br>查看冲突文件
+git status
+
+
+<br>打开冲突文件<br>
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>
+主分支的内容 (master)<br>
+=======<br>
+要合并进来的分支的内容<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; new_branch
+<br>手动选择合适的内容保留，删除冲突标记 （&lt;, =, &gt; 共三行）
+<br>添加到暂存区，提交
+<br><br>使用 -d 删除分支时，必须确保该分支已合并回主分支，否则 git 会阻止删除<br>git branch -d new_branch
+<br>如想强制删除，使用 -D<br>git branch -D new_branch
+<br><br>Git Tag 就是仓库中某个重要提交的书签，用于标记重要版本，或关键节点 (v1.0, v2.0)<br><br>标签的创建默认指向当前最新的 commit<br>
+<br>轻量标签 （信息简洁）
+git tag &lt;标签名&gt;
+
+
+<br>附注标签 （带有额外说明信息）<br>
+ 	git tag -a &lt;标签名&gt; -m "description" 	<br>
+对过去的提交记录打标签，commit id 可使用 git log 查看（使用前六位）
+<br>git tag -a &lt;标签名&gt; &lt;commit id&gt; -m "description"
+<br><br>标签按照字母，数字顺序排列<br>git tag
+<br>查看带有详细信息的标签：<br>git show &lt;标签名&gt;
+<br><br>推送单个标签<br>git push origin &lt;标签名&gt;
+<br>推送所有标签<br>git push origin --tags
+<br>在 github 上可以点击 Tag, 查看所有标签信息<br><br>删除本地标签，但远程标签仍存在<br>git tag -d &lt;标签名&gt;
+<br>删除远程标签<br>git push origin --delete &lt;标签名&gt;
+<br><br><br>修改文件时，恢复该文件至最后一次 commit 后的状态，撤销所有未提交的修改<br>git checkout -- file_name
+<br><br>先将文件从暂存区移除<br>git reset file_name
+<br>再使用 checkout 撤销工作区的修改<br>git checkout --file_name
+<br><br><br>回退或撤销本地提交，将分支的提交历史往回移动<br>git reset
+<br>reset 有三种模式，默认为 mixed （HEAD表示当前所处的位置）<br><br>HEAD 往前移动一个提交位置（即上一次）：<br>git reset --soft HEAD~1
+<br>撤回到标签名所在的提交：<br>git reset &lt;标签名&gt;
+<br>撤回到某次提交：<br>git reset --hard &lt;commit id&gt;
+<br><br>另一种撤销方式，创建一次新的提交，撤销某个历史提交的所有更改<br>
+不会改变提交历史，团队协作更安全<br>git revert &lt;要撤销的id&gt;
+<br>情景：A -&gt; B -&gt; C<br>
+但是 B 有 bug ，使用 git revert id_of_B 撤销 B 后<br>
+新的队列： A -&gt; B -&gt; C -&gt; D<br>
+B 仍然保留， 新增 D（内容为撤销 B 的所有改动）<br><br><br>]]></description><link>tools\git\git-operation-guide.html</link><guid isPermaLink="false">tools/Git/Git Operation Guide.md</guid><pubDate>Thu, 22 May 2025 17:42:20 GMT</pubDate><enclosure url="tools\git\git_fig.-1..png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="tools\git\git_fig.-1..png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[安装虚拟机]]></title><description><![CDATA[ 
+ <br><br><a data-tooltip-position="top" aria-label="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Workstation%20Pro&amp;freeDownloads=true" rel="noopener nofollow" class="external-link" href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Workstation%20Pro&amp;freeDownloads=true" target="_blank">VMWare Workstation Pro</a>)<br>
+<a data-tooltip-position="top" aria-label="https://vault.centos.org/7.6.1810/isos/x86_64/CentOS-7-x86_64-DVD-1810.iso" rel="noopener nofollow" class="external-link" href="https://vault.centos.org/7.6.1810/isos/x86_64/CentOS-7-x86_64-DVD-1810.iso" target="_blank">CentOS操作系统</a><br>
+<a data-tooltip-position="top" aria-label="https://dl.hostbuf.com/finalshell3/finalshell_windows_x64.exe" rel="noopener nofollow" class="external-link" href="https://dl.hostbuf.com/finalshell3/finalshell_windows_x64.exe" target="_blank">FinalShell</a><br><br><br><br>Linux 的目录结构是一个树型结构，没有盘符的概念<br>
+所有文件存放在根目录 / 下面<br><br>Windows 系统中，路径之间的层级关系，使用 :\ 表示<br>
+Linux 系统中，路径之间的层级关系，使用 :/ 表示<br>
+描述路径永远以 / 开头，如 /user/local/hello.txt<br><br><br>学习 Linux，本质是学习在命令行下使用 Linux 的各种命令<br>
+<br>命令行：即 Linux 终端 (Terminal)，是一种命令提示符页面。以纯“字符”的形式操作系统，可使用各种字符化命令对系统发出操作指令。
+<br>命令：即 Linux 程序。一个命令就是一个 Linux 的程序。命令没有图形化界面。
+<br><br>通用格式：<br>command [-options] [parameter]
+<br>
+<br>command：命令本身
+<br>-options：命令的一些选项，可以通过选项控制命令的行为细节
+<br>parameter：命令的参数，多数用于命令的指向目标等
+<br>[] 表示可选
+<br><br><br>列出当前工作目录下的内容：<br>ls [-a -l -h] [Linux 路径]
+<br>
+<br>-a -l -h 为可选选项
+<br>Linux 路径是此命令可选参数<br>
+不使用选项和参数时，表示以平铺形式，列出当前工作目录下的内容<br>
+<img alt="linux_fig1.png" src="tools\linux\figs\linux_fig1.png">
+<br><br>ls 命令表示列出当前工作目录下的内容<br>
+<br>当前登录用户的 HOME 目录作为当前工作目录，故 ls 命令列出 HOME 目录的内容
+<br>HOME 目录：每个 Linux 操作用户在 Linux 系统的个人账户目录，路径为 /home/用户名
+<br><br><br>查看根目录下的列表：<br>ls /
+<br><img alt="linux_fig2.png" src="tools\linux\figs\linux_fig2.png"><br><br>
+<br>-a 表示 all， 列出全部文件（包含隐藏的文件/文件夹）<br>
+<img alt="linux_fig3.png" src="tools\linux\figs\linux_fig3.png">
+<br>
+<br>其中以 . 开头的，表示 Linux 系统的隐藏文件/文件夹（只要以 . 开头，就自动隐藏）
+<br>只有通过 -a 选项，才能看到
+<br>
+<br>-l 表示 list，以列表（竖向排列）的形式展示内容，并展示更多信息<br>
+<img alt="linux_fig4.png" src="tools\linux\figs\linux_fig4.png">
+<br>选项也可以组合使用：<br>
+以下写法均表示同时应用 -l 和 -a 的功能<br>
+<br>ls -l -a
+<br>ls -la
+<br>ls -al
+<br>
+<br>-h 表示以易于阅读的形式，列出文件大小，如K、M、G<br>
+-h 必须要搭配 -l 一起使用<br>
+<img alt="linux_fig5.png" src="tools\linux\figs\linux_fig5.png">
+<br><br><br>cd 语法：(change directory)<br>cd [Linux 路径]
+<br>
+<br>cd 无需选项，只有参数，表示切换至的目录
+<br>cd 不写参数时，表示回到用户的 HOME 目录 /home/用户名
+<br><br>pwd语法：(print work directory)<br>pwd
+<br>
+<br>pwd 无选项，无参数
+<br><br><br>]]></description><link>tools\linux\linux-operation-guide.html</link><guid isPermaLink="false">tools/Linux/Linux Operation Guide.md</guid><pubDate>Thu, 22 May 2025 17:34:23 GMT</pubDate><enclosure url="tools\linux\figs\linux_fig1.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="tools\linux\figs\linux_fig1.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[基础语法]]></title><description><![CDATA[ 
  <br><a data-tooltip-position="top" aria-label="https://regexr.com" rel="noopener nofollow" class="external-link" href="https://regexr.com" target="_blank">在线练习网站</a> <br><br>正则表达式一般用两个 // 包裹，后跟一些修饰符<br>
 如 g 代表全局匹配，i 代表忽略大小写，m 代表多行匹配<br><br>
 <br>显示所有的 at
